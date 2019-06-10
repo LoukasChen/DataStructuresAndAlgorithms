@@ -305,11 +305,11 @@ public class SingleLinkedList {
 
     class Node {
         /**
-         * 节点数据
+         * 数据域
          */
         public String data;
         /**
-         * 下一个节点
+         * 后继指针
          */
         public Node next;
 
