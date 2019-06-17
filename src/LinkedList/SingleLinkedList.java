@@ -25,15 +25,15 @@ public class SingleLinkedList {
 //        list.forEach(value -> linkList.insertToHead(value));
         list.forEach(value -> linkList.insertToTail(value));
         linkList.insertAfter("计算机网络", "计算机组成原理");
-//        Node node = linkList.reverseList(head);
+        Node node = linkList.reverseList(head);
 //        Node node = linkList.reverseListRec(head);
 //        linkList.deleteByIndexNode(head, 5);
 //        linkList.deleteByValueNode(head, "计算机网络");
 //        linkList.deleteRepeatNode(head);
-        Node middleNode = linkList.findMiddleNode(head);
+//        Node middleNode = linkList.findMiddleNode(head);
 //        Node lastIndexNode = linkList.findLastIndexNode(head, 4);
-        System.out.println(linkList.getSize(middleNode));
-        linkList.print(middleNode);
+//        System.out.println(linkList.getSize(middleNode));
+        linkList.print(node);
 //        linkList.deleteNode();
 //        linkList.print();
 
@@ -111,9 +111,10 @@ public class SingleLinkedList {
         } else {
             // 初始化新的链表
             Node newNode = null;
+            Node temp;
             while (currentNode != null) {
                 // temp存储当前链表的下一个节点及后面
-                Node temp = currentNode.next;
+                temp = currentNode.next;
                 currentNode.next = newNode;
                 newNode = currentNode;
                 currentNode = temp;

@@ -68,7 +68,7 @@ public class DoubleLinkedList {
     }
 
     /**
-     * 删除指定节点的后一个节点
+     * 删除指定节点(双向链表可自我删除)
      *
      * @param selectData 要删除的位置
      */
@@ -78,8 +78,8 @@ public class DoubleLinkedList {
             while (!selectData.equals(tempNode.data)) {
                 tempNode = tempNode.next;
             }
-            tempNode.next = tempNode.next.next;
-            tempNode = tempNode.next.prev;
+            tempNode.prev.next = tempNode.next;
+            tempNode.next.prev = tempNode.prev;
         }
     }
 
