@@ -41,7 +41,9 @@ public class ArrayQueue {
         strList.add("队列");
         strList.add("树");
         strList.forEach(v -> arrayQueue.enQueue(v));
-        strList.forEach(v -> System.out.println(arrayQueue.deQueue()));
+        arrayQueue.deQueue();
+        arrayQueue.deQueue();
+        arrayQueue.enQueue("图");
     }
 
     /**
@@ -53,13 +55,28 @@ public class ArrayQueue {
     private boolean enQueue(String item) {
         // 队列已满
         if (tail == size) {
-            return false;
-        } else {
-            items[tail++] = item;
-            return true;
+            // head=0表示队列没有空闲的空间
+            if (head == 0) {
+                return false;
+            } else {
+                // 数据搬移
+                for (int i = head; i < tail; ++i) {
+                    items[i - head] = items[i];
+                }
+                // 更新tail和head的位置
+                tail -= head;
+                head = 0;
+            }
         }
+        items[tail++] = item;
+        return true;
     }
 
+    /**
+     * 出队列
+     *
+     * @return
+     */
     private String deQueue() {
         // 队列为空
         if (tail == head) {

@@ -29,7 +29,6 @@ public class LinkedListQueue {
         strList.add("树");
         strList.forEach(v -> linkedListQueue.enQueue(v));
         strList.forEach(v -> System.out.println(linkedListQueue.deQueue()));
-//        linkedListQueue.print(head);
     }
 
     /**

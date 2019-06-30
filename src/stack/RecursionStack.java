@@ -5,10 +5,10 @@ package stack;
  * @description: 栈的应用-递归
  * @date 2019/6/19 21:46
  */
-public class recursionStack {
+public class RecursionStack {
     public static void main(String[] args) {
         for (int i = 1; i < 10; ++i) {
-            System.out.println(recursionStack.printTotal(i));
+            System.out.println(RecursionStack.printTotal(i));
         }
     }
 
