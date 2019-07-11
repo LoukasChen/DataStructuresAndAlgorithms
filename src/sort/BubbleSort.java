@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class BubbleSort {
     public static void main(String[] args) {
         BubbleSort bubbleSort = new BubbleSort();
-        int[] arr = {4, 3, 5, 6, 6, 7};
+        int[] arr = {4, 3, 8, 6, 1, 2};
         bubbleSort.changeSort(arr);
     }
 
