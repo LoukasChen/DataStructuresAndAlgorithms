@@ -10,6 +10,8 @@ public class RecursionStack {
         for (int i = 1; i < 10; ++i) {
             System.out.println(RecursionStack.printTotal(i));
         }
+        int[] arr = {1, 5, 7, 8, 23};
+        System.out.println(RecursionStack.add(arr, 0));
     }
 
     /**
@@ -25,6 +27,22 @@ public class RecursionStack {
             return printTotal(month - 2) + printTotal(month - 1);
         }
     }
+
+    /**
+     * 递归求数组各元素之和
+     *
+     * @param arr
+     * @param index
+     * @return
+     */
+    private static int add(int[] arr, int index) {
+        if (index == arr.length) {
+            return 0;
+        } else {
+            return arr[index] + add(arr, index + 1);
+        }
+    }
+
 }
 
 
