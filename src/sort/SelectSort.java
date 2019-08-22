@@ -13,6 +13,26 @@ public class SelectSort {
         selectSort(arr);
     }
 
+    /**
+     * 内层遍历找出最小的元素下标，与目标值交换
+     * 第一遍：
+     * 4 6 1 8 3 5
+     * 1 6 4 8 3 5
+     * 第二遍：
+     * 6 4 8 3 5
+     * 3 4 8 6 5
+     * 第三遍：
+     * 4 8 6 5
+     * 4 8 6 5
+     * 第四遍：
+     * 8 6 5
+     * 5 6 8
+     * 第五遍：
+     * 6 8
+     * 6 8
+     *
+     * @param arr
+     */
     private static void selectSort(int[] arr) {
         if (arr.length <= 1) {
             return;
