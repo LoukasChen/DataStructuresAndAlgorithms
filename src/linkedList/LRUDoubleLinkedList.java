@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 /**
  * @author csp
- * @description: 双向链表实现LRU缓存淘汰算法
+ * @description: 双向链表+HashMap实现LRU缓存淘汰算法
  * @date 2019/9/12 20:49
  */
 public class LRUDoubleLinkedList<K, V> implements Iterable<K> {
@@ -30,20 +30,43 @@ public class LRUDoubleLinkedList<K, V> implements Iterable<K> {
         lru.put("age", "123");
         lru.put("addr", "java");
         lru.put("tel", "123");
+        lru.get("age");
+    }
+
+    /**
+     * 每次查询都将该结点从链表中删除，并添加到链表头部
+     *
+     * @param key
+     * @return
+     */
+    private V get(K key) {
+        if (!map.containsKey(key)) {
+            return null;
+        } else {
+            Node node = map.get(key);
+            delete(node);
+            insertToHead(node);
+            return node.value;
+        }
     }
 
     private void put(K key, V value) {
         if (map.containsKey(key)) {
             Node node = map.get(key);
-            unlink(node);
+            delete(node);
         }
         Node node = new Node(key, value);
         map.put(key, node);
         insertToHead(node);
         if (map.size() > maxSize) {
-            Node toRemove = removeTail();
-            map.remove(toRemove.key);
+            Node removeNode = removeTail();
+            map.remove(removeNode.key);
         }
+    }
+
+    private void delete(Node node) {
+        node.pre.next = node.next;
+        node.next.pre = node.pre;
     }
 
     /**
@@ -54,19 +77,9 @@ public class LRUDoubleLinkedList<K, V> implements Iterable<K> {
     private Node removeTail() {
         Node node = tail.pre;
         Node pre = node.pre;
-        tail.pre = pre;
         pre.next = tail;
+        tail.pre = pre;
         return node;
-    }
-
-    /**
-     * 删除重复结点
-     *
-     * @param node
-     */
-    private void unlink(Node node) {
-        node.pre.next = node.next;
-        node.next.pre = node.pre;
     }
 
     /**
