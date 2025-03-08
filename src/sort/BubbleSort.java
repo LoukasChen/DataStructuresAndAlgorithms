@@ -2,6 +2,8 @@ package sort;
 
 import java.util.Arrays;
 
+import static sort.SortUtils.swap;
+
 /**
  * @author csp
  * @description: 冒泡排序
@@ -9,31 +11,26 @@ import java.util.Arrays;
  */
 public class BubbleSort {
     public static void main(String[] args) {
-        BubbleSort bubbleSort = new BubbleSort();
         int[] arr = {4, 3, 8, 6, 1, 2};
-        bubbleSort.changeSort(arr);
+        bubbleSort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
-    private void changeSort(int[] arr) {
-        if (arr.length <= 1) {
+    private static void bubbleSort(int[] arr) {
+        if (arr == null || arr.length == 1) {
             return;
-        } else {
-            for (int i = 0; i < arr.length - 1; ++i) {
-                // flag判断数组是否还需要排序
-                boolean flag = false;
-                for (int j = 0; j < arr.length - i - 1; ++j) {
-                    if (arr[j] > arr[j + 1]) {
-                        int temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
-                        flag = true;
-                    }
+        }
+        int len = arr.length;
+        for (int i = 0; i < len - 1; i++) {
+            boolean stopSortFlag = true;
+            for (int j = 0; j < len - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    swap(arr, j, j + 1);
+                    stopSortFlag = false;
                 }
-                System.out.print("第"+(i+1)+"次排序的数组为：");
-                System.out.println(Arrays.toString(arr));
-                if (!flag) {
-                    break;
-                }
+            }
+            if (stopSortFlag) {
+                break;
             }
         }
     }

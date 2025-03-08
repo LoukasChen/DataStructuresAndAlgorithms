@@ -2,15 +2,19 @@ package sort;
 
 import java.util.Arrays;
 
+import static sort.SortUtils.swap;
+
 /**
  * @author csp
  * @description: 选择排序
  * @date 2019/7/7 20:03
  */
 public class SelectSort {
+
     public static void main(String[] args) {
         int[] arr = {4, 6, 1, 8, 3, 5};
         selectSort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
     /**
@@ -30,27 +34,26 @@ public class SelectSort {
      * 第五遍：
      * 6 8
      * 6 8
-     *
-     * @param arr
      */
     private static void selectSort(int[] arr) {
-        if (arr.length <= 1) {
+        if (arr == null || arr.length == 1) {
             return;
-        } else {
-            for (int i = 0; i < arr.length - 1; ++i) {
-                int minIndex = i;
-                for (int j = i + 1; j < arr.length; ++j) {
-                    if (arr[j] < arr[minIndex]) {
-                        // 找出最小值下标
-                        minIndex = j;
-                    }
+        }
+        int len = arr.length;
+        for (int i = 0; i < len - 1; i++) {
+            // 假设当前索引为最小值的索引
+            int minIndex = i;
+            // 在未排序部分寻找最小值
+            for (int j = i + 1; j < len; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
                 }
-                int temp = arr[i];
-                arr[i] = arr[minIndex];
-                arr[minIndex] = temp;
-                System.out.print("第" + (i + 1) + "次排序的数组为：");
-                System.out.println(Arrays.toString(arr));
+            }
+            // 如果找到的最小值不是当前元素，则交换它们
+            if (i != minIndex) {
+                swap(arr, i, minIndex);
             }
         }
     }
+
 }
